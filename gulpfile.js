@@ -1,16 +1,16 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
+const gulp = require('gulp');
+const browserSync = require('browser-sync');
 
 
-gulp.task('watch', ['browser-sync'], function() {});
+gulp.task('watch', ['browser-sync'], () => {});
 
 
 // Static server
-gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./",
-	    index: "snake.html"
-        }
-    });
+gulp.task('browser-sync', () => {
+  browserSync.init({
+    server: {
+      baseDir: './',
+      index: 'snake.html',
+    },
+  });
 });
