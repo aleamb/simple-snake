@@ -1,0 +1,23 @@
+{
+  "name": "simple-snake",
+  "version": "1.0.0",
+  "description": "Simple Snake game",
+  "main": "snake.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp browser-sync"
+  },
+  "private": true,
+  "keywords": [
+    "game",
+    "snake",
+    "canvas",
+    "linked list"
+  ],
+  "author": "aleamb",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1"
+  }
+}
