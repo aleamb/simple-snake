@@ -18,4 +18,4 @@ and then
 
 `npm start`
 
-Last command will launch gulp and it will execute browser-sync for open a web browser and load snake.html.
+Last command will launch gulp and it will execute browser-sync opening a web browser and loading snake.html.
