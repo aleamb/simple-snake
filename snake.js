@@ -5,7 +5,9 @@
   const DIRECTIONS = { left: [-1, 0], right: [1, 0], up: [0, -1], down: [0, 1] };
   const INITIAL_HEAD = { x: 11, y: 12, dir: DIRECTIONS.left };
   const GAME_STATE = { INIT: 0, RUN: 1, FAIL: 2 };
-  const food = { x: 5, y: 5 };
+  const AREA_BACKGROUND_COLOR = 'black';
+  const SPEED = 15; // steps per second
+  const food = {};
 
   let score = 0;
   let gameState = GAME_STATE.INIT;
@@ -47,11 +49,11 @@
     return snake;
   }
   function update() {
-    let state;
+    move();
+    checkLimits();
+    checkFood();
+    if (checkAutoCollision()) { state = GAME_STATE.FAIL; stopGame(timer); }
     render();
-    state = check();
-    if (state === GAME_STATE.FAIL) stopGame(timer);
-    else move();
   }
   function stopGame() {
     clearInterval(timer);
@@ -85,15 +87,14 @@
       score = 0;
       showScore(0);
     }
+    placeFood();
     renderInit();
     gameState = GAME_STATE.RUN;
-    timer = setInterval(update, 50);
+    timer = setInterval(update, 1000 / SPEED);
   }
-  function check() {
-    checkLimits();
-    checkFood();
-    if (checkAutoCollision()) { return GAME_STATE.FAIL; }
-    return GAME_STATE.RUN;
+  function placeFood() {
+    food.x = Math.floor(Math.random() * AREA_LIMIT);
+    food.y = Math.floor(Math.random() * AREA_LIMIT);
   }
   function checkAutoCollision() {
     let segment = snake.head.next;
@@ -106,21 +107,18 @@
     return false;
   }
   function checkLimits() {
-    const head = snake.head;
+    if (snake.head.x < 0) snake.head.x = AREA_LIMIT;
+    else if (snake.head.x > AREA_LIMIT) snake.head.x = 0;
 
-    if (head.x < 0) head.x = AREA_LIMIT;
-    else if (head.x > AREA_LIMIT) head.x = 0;
-
-    if (head.y < 0) head.y = AREA_LIMIT;
-    else if (head.y > AREA_LIMIT) head.y = 0;
+    if (snake.head.y < 0) snake.head.y = AREA_LIMIT;
+    else if (snake.head.y > AREA_LIMIT) snake.head.y = 0;
   }
   function checkFood() {
     if (food.x === snake.head.x && food.y === snake.head.y) {
       score++;
       showScore(score);
       snake.addSegment();
-      food.x = Math.floor(Math.random() * AREA_LIMIT);
-      food.y = Math.floor(Math.random() * AREA_LIMIT);
+      placeFood();
     }
   }
   function showScore(pScore) {
@@ -144,30 +142,26 @@
     snake.tail.next = null;
   }
   function clearScr() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(0, 0, clientScr.width, clientScr.height);
+    drawElement(AREA_BACKGROUND_COLOR, 0, 0, clientScr.width, clientScr.height);
   }
   function drawSegment(x, y) {
-    ctx.fillStyle = 'gray';
-    ctx.fillRect(x * segmentSize, y * segmentSize, segmentSize, segmentSize);
+    drawElement('gray', x * segmentSize, y * segmentSize, segmentSize, segmentSize);
   }
   function drawHead() {
-    ctx.fillStyle = 'red';
-    ctx.fillRect(snake.head.x * segmentSize, snake.head.y * segmentSize, segmentSize, segmentSize);
+    drawElement('red', snake.head.x * segmentSize, snake.head.y * segmentSize, segmentSize, segmentSize);
   }
   function drawFood() {
-    ctx.fillStyle = 'green';
-    ctx.fillRect(food.x * segmentSize, food.y * segmentSize, segmentSize, segmentSize);
+    drawElement('green', food.x * segmentSize, food.y * segmentSize, segmentSize, segmentSize);
   }
   function eraseTail() {
-    ctx.fillStyle = 'black';
-    ctx.fillRect(snake.tail.x * segmentSize, snake.tail.y * segmentSize, segmentSize, segmentSize);
+    drawElement(
+      AREA_BACKGROUND_COLOR, snake.tail.x * segmentSize, snake.tail.y * segmentSize, segmentSize, segmentSize);
   }
   function printMsg(text) {
     doc.getElementById('msgs').innerHTML = text;
   }
   function drawElement(color, pX, pY, sX, sY) {
     ctx.fillStyle = color;
-    ctx.fillRect(pX, snake.tail.y * segmentSize, segmentSize, segmentSize)
+    ctx.fillRect(pX, pY, sX, sY);
   }
 }(window, document));
