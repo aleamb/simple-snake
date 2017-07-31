@@ -1,4 +1,4 @@
-#simple-snake
+# simple-snake
 
 Snake game in less than 170 lines of javascript code.
 
@@ -6,7 +6,7 @@ This game is for educational purposes. Snake is modeled as linked-list of segmen
 
 For move the snake, tail is erased, head is moved towards snake direction and new segment is rendered in gap between head and rest of snake's body. Then tail becomes the previous segment.
 
-#Running simple-snake
+# Running simple-snake
 
 - Open snake.html in any web browser with HTML5 and ES6 support.
 
@@ -14,7 +14,7 @@ For move the snake, tail is erased, head is moved towards snake direction and ne
 
 `npm install`
 
-and
+and then
 
 `npm start`
 
