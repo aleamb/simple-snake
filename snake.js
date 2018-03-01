@@ -1,4 +1,4 @@
-let SnakeGame = function() {
+let SnakeGame = function(canvasId) {
   const GRID_SIZE = 25;
   const AREA_LIMIT = GRID_SIZE - 1;
   const INITIAL_SEGMENTS = 3;
@@ -147,7 +147,7 @@ let SnakeGame = function() {
     }
   }
   function init() {
-    clientScr = doc.getElementById('canvas');
+    clientScr = document.getElementById(canvasId);
     ctx = clientScr.getContext('2d');
     segmentSize = clientScr.width / GRID_SIZE;
     clientScr.addEventListener('keyup', handleKeyUp, true);
@@ -156,4 +156,4 @@ let SnakeGame = function() {
   }
   init();
 };
-SnakeGame();
+SnakeGame('canvas');
