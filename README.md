@@ -1,6 +1,6 @@
 # simple-snake
 
-Snake game in less than 170 lines of javascript code.
+Snake game in less than 160 lines of javascript code.
 
 This game is for educational purposes. Snake is modeled as linked-list of segments where each segment store x and y coordinates. Head segment stores direction too.
 
