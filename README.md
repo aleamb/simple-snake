@@ -8,7 +8,7 @@ For move the snake, tail is erased, head is moved towards snake direction and ne
 
 ## Running simple-snake
 
-- Open snake.html in any web browser with HTML5 and ES6 support.
+- Open snake.html in any web browser with HTML5  support.
 
 - Or via Nodejs, run:
 
