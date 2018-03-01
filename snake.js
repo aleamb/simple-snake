@@ -1,4 +1,4 @@
-(function (globalScope, doc) {
+let SnakeGame = function() {
   const GRID_SIZE = 25;
   const AREA_LIMIT = GRID_SIZE - 1;
   const INITIAL_SEGMENTS = 3;
@@ -90,7 +90,7 @@
     drawElement('green', food.x , food.y);
   }
   function printMsg(text) {
-    doc.getElementById('msgs').innerHTML = text;
+    document.getElementById('msgs').innerHTML = text;
   }
   function render() {
     clearScr();
@@ -155,4 +155,5 @@
     render();
   }
   init();
-}(window, document));
+};
+SnakeGame();
