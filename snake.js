@@ -118,12 +118,12 @@ let SnakeGame = function(canvasId) {
       render();
       return;
     }
+    checkLimits();
+    checkFood();
     if (t - t1 > SPEED) {
       move();
       t1 = t;
     }
-    checkLimits();
-    checkFood();
     render();
     frameRequest = requestAnimationFrame(update);
   }
@@ -140,10 +140,10 @@ let SnakeGame = function(canvasId) {
   function handleKeyUp(e) {
     switch (e.keyCode) {
       case 32: start(); break;
-      case 38: snake.dir = DIRECTIONS.up; move(); break;
-      case 40: snake.dir = DIRECTIONS.down; move(); break;
-      case 37: snake.dir = DIRECTIONS.left; move(); break;
-      case 39: snake.dir = DIRECTIONS.right; move();
+      case 38: snake.dir = DIRECTIONS.up; break;
+      case 40: snake.dir = DIRECTIONS.down; break;
+      case 37: snake.dir = DIRECTIONS.left; break;
+      case 39: snake.dir = DIRECTIONS.right;
     }
   }
   function init() {
