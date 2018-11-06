@@ -5,7 +5,7 @@
   "main": "snake.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "gulp browser-sync"
+    "start": "gulp watch"
   },
   "private": true,
   "keywords": [
@@ -17,7 +17,7 @@
   "author": "aleamb",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.18.12",
-    "gulp": "^3.9.1"
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0"
   }
 }
